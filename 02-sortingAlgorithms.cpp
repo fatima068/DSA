@@ -45,7 +45,7 @@ void insertionSort(int arr[], int n) {
     }
 }
 
-void shellSort() {
+void shellSort(int arr[], int n) {
 
 }
 
