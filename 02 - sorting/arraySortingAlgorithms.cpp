@@ -35,7 +35,7 @@ void selectionSort(int arr[], int n) {
 
 void insertionSort(int arr[], int n) {
     for (int i = 1; i<n; i++) { //start with i = 1 because 0th element is already assumed to be sorted, we need to start checking from the 1st element
-        int current = arr[i];
+        int current = arr[i]; // value store karni hai, not the index kyunke index tou over write hojayega when prev ko aage move karenge 
         int prev = i - 1; // this is the index of the last element of the sorted part 
         while (prev >=0 && arr[prev] > current) { // if the current element is smaller than the last element of the sorted part, we need to shift the last element to the right
             arr[prev + 1] = arr[prev]; 
@@ -46,7 +46,16 @@ void insertionSort(int arr[], int n) {
 }
 
 void shellSort(int arr[], int n) {
-
+    for (int gap = n/2; gap > 0; gap=gap*0.5) {
+        for (int j = gap; j < n; j++) {
+            int temp = arr[j];
+            int i = 0;
+            for (i = j; i >= gap && arr[i - gap] > temp; i -= gap) {
+                arr[i] = arr[i - gap];
+            }
+            arr[i] = temp;
+        }
+   }
 }
 
 void printArray(int arr[], int n) {
@@ -58,7 +67,7 @@ void printArray(int arr[], int n) {
 
 int main() {
     int arr[] = {64, 34, 25, 12, 22, 11, 90};
-    insertionSort(arr, 7);
-    cout << "Sorted array using selection Sort: ";
+    shellSort(arr, 7);
+    cout << "Sorted array using shell Sort: ";
     printArray(arr, 7);
 }
