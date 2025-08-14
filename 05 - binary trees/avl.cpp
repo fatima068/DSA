@@ -59,7 +59,7 @@ class avlTree {
     }
 
     Node* insert(Node* root, int val) { // insert new node and return value of new root
-        // Node* newNode = new Node(val); // donthave to do this, create new node sirf insert karte time hee
+        // Node* newNode = new Node(val); // dont have to do this, create new node sirf insert karte time hee
         if (root == nullptr) {
             Node* newNode = new Node(val);
             return newNode;
@@ -71,7 +71,7 @@ class avlTree {
         }
         else {
             cout << "insert only unique values" << endl;
-            return nullptr;
+            return root;
         }
         // ab node insert ho chuka hai, backtracking ke waqt ye code run hoga, starting from the leaf node and going towards root
         // check if every node is balanced here. bf nikalen ge sabka 
