@@ -18,7 +18,7 @@ int main (){
         cout << "enter expense for month " << i + 1 << ": ";
         cin >> arr[i];
     }
-    cout << "do you want to resize array to add more months? enter 0 for no, or enter how many more months u want: ";
+    cout << "do you want to resize array to add more months? enter 0 for no, or enter how many more months u want: "; //becasue qs only asks if user wants to add months, not delete months, so we only provide that option
     cin >> userIn;
     if (userIn> 0) {
         float *temp = new float[numOfMonths + userIn];

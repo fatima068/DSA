@@ -52,7 +52,7 @@ int main(){
     cout <<"enter cols of matrix: ";
     cin>>cols;
 
-    int **matrix1 = new int*[rows], **matrix2 = new int*[rows], **result;
+    int **matrix1 = new int*[rows], **matrix2 = new int*[rows], **result; //because both matrices need to have same rows and cols for addition and subtraction
     for (int i =0;i < rows; i++) {
         matrix1[i] = new int[cols];
         matrix2[i] = new int[cols];
