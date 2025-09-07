@@ -65,7 +65,7 @@ class SinglyLinkedList {
             return;
         }
         
-        if (head == tail) {  // Only 1 node
+        if (head == tail) {  // Only 1 node // why do we need a different case for 1 node? // because in this case, when we move the temp pointer, it will become null and we wont be able to delete the only node
             delete head;
             head = tail = nullptr;
             return;
