@@ -100,6 +100,9 @@ class LinkedList{
             delete current;
             current =nextNode;
         }
+        delete current;
+        delete head;
+        delete tail;
     }
 };
 
@@ -118,6 +121,6 @@ int main() {
     Node* result = list.reverseKGroup(list.head, k);
     cout << " groups of " << k << ": ";
     list.print(result);
-
+     delete result;
     
 }

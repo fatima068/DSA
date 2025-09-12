@@ -71,6 +71,9 @@ class LinkedList{
             delete current;
             current =nextNode;
         }
+        delete head;
+        delete tail;
+        delete current;
     }
 };
 

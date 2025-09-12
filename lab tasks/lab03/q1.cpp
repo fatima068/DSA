@@ -41,6 +41,9 @@ class LinkedList{
             delete current;
             current =nextNode;
         }
+        delete current;
+        delete head;
+        delete tail;
     }
 };
 
