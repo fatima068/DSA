@@ -1,24 +1,6 @@
-// Your team has been given a large dataset (input by user) of sorted, uniformly distributed account balances. If the data is not sorted, you have to sort it first. If the data is not uniformly distributed after you apply sorting (if necessary) you can prompt an error. Your manager has asked you to implement Interpolation Search because it estimates the position of the target value based on the data distribution. This will allow the search to "jump" closer to the target in fewer iterations.
-
+// Implement the Interpolation Search algorithm. The program should take a sorted array with uniformly distributed values and a target value from the user. The algorithm should estimate the position of the target and check if the estimated position holds the correct value. If the element is found, print its index; otherwise, indicate that it's not present.
 #include <iostream>
 using namespace std;
-
-void bubbleSort(int arr[], int n) {
-    for (int i= 0;i<n-1; i++) {
-        bool swapped = false; 
-        for (int j= 0; j< n-i-1; j++) {
-            if (arr[j] >arr[j+1]){
-                int temp =arr[j];
-                arr[j] =arr[j+1];
-                arr[j+1]=temp;
-                swapped=true;
-            }
-        }
-        if (swapped==false){
-            return;
-        }
-    }
-}
 
 void print(int arr[], int n){
     for(int i =0; i<n; i++) {
@@ -58,16 +40,12 @@ int main(){
     cout<<"enter size of arry: ";
     cin >>n;
     arr= new int[n];
+    cout<<"enter array in ascending order" << endl;
     for(int i=0;i< n;i++) { 
         cout<< "enter value " << i<<": ";
         cin>>arr[i];
     }
 
-    bool x = isSorted(arr, n);
-    if(x==false){
-        bubbleSort(arr, n);
-        cout<<"Sorted array: "; print(arr,n);
-    }
 
 
     int diff=arr[1]-arr[0];
@@ -84,12 +62,9 @@ int main(){
     if(pos == -1) {
         cout << "target val not found";
     } else {
-        if(arr[pos]==target){
-
-            cout <<"target val fpund at index" << pos << endl;
-        } else cout << "not found ";
+        cout <<"target val fpund at index" << pos << endl;
     }
-
     delete[]arr;
+
     
 }

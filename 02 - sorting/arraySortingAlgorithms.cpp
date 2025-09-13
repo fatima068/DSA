@@ -46,7 +46,7 @@ void insertionSort(int arr[], int n) {
 }
 
 void shellSort(int arr[], int n) {
-    for (int gap = n/2; gap > 0; gap=gap*0.5) {
+    for (int gap = n/2; gap > 0; gap/=2) {
         for (int j = gap; j < n; j++) {
             int temp = arr[j];
             int i = 0;
