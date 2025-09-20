@@ -234,7 +234,7 @@ int main() {
 
     cout << "Initial list: ";
     list.print();
-
+    
     // list.binarySearch(1);
     // list.binarySearch(2);
     list.binarySearch(3); 
