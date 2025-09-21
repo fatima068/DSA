@@ -2,27 +2,27 @@
 #include <string>
 using namespace std;
 
-int interpolationSearchRecursive(int arr[], int element, int low, int high) {
+int interpolationSearchRecursive(int arr[], int valueToSearch, int low, int high) {
     // Calculate the probable position using interpolation formula
-    int pos = low + ((double)(high - low) * (element - arr[low])) / (arr[high] - arr[low]);
+    int pos = low + (high - low) * (valueToSearch - arr[low]) / (arr[high] - arr[low]);
 
     // Check if the calculated position is within bounds
     if (pos <= high && pos >= low) {
-        // If element is found at the calculated position
-        if (element == arr[pos]) {
+        // If valueToSearch is found at the calculated position
+        if (valueToSearch == arr[pos]) {
             return pos;
         }
-        // If element is smaller, search in the left subarray
-        else if (element < arr[pos]) {
-            return interpolationSearchRecursive(arr, element, low, pos - 1);
+        // If valueToSearch is smaller, search in the left subarray
+        else if (valueToSearch < arr[pos]) {
+            return interpolationSearchRecursive(arr, valueToSearch, low, pos - 1);
         }
-        // If element is larger, search in the right subarray
-        else if (element > arr[pos]) {
-            return interpolationSearchRecursive(arr, element, pos + 1, high);
+        // If valueToSearch is larger, search in the right subarray
+        else if (valueToSearch > arr[pos]) {
+            return interpolationSearchRecursive(arr, valueToSearch, pos + 1, high);
         }
     }
 
-    // If element is not found in the array
+    // If valueToSearch is not found in the array
     return -1;
 }
 

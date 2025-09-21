@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int binarySearch(int arr[], int target, int left, int right) {
+int binarySearchRecursive(int arr[], int target, int left, int right) {
     // Base case: element not found
     if (left > right) {
         return -1;
@@ -16,11 +16,11 @@ int binarySearch(int arr[], int target, int left, int right) {
     }
     // If element is in left half
     else if (arr[mid] > target) {
-        return binarySearch(arr, target, left, mid - 1);
+        return binarySearchRecursive(arr, target, left, mid - 1);
     }
     // If element is in right half
     else {
-        return binarySearch(arr, target, mid + 1, right);
+        return binarySearchRecursive(arr, target, mid + 1, right);
     }
 }
 
@@ -29,7 +29,7 @@ int main() {
     int size = sizeof(arr) / sizeof(arr[0]);
     int target = 23;
 
-    int result = binarySearch(arr, target, 0, size - 1);
+    int result = binarySearchRecursive(arr, target, 0, size - 1);
 
     if (result == -1) {
         cout << "Element not found in the array" << endl;

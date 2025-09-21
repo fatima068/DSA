@@ -159,7 +159,7 @@ class SinglyLinkedList {
         return slow;
     }
 
-    void binarySearch(int val) {
+    void binarySearchLinkedList(int val) {
         // first find middle node: two methods - we make a helper function to find middle node
         // 1. count the number of nodes, then find middle node by traversing from head
         // 2. use two pointers: slow and fast. slow moves one step, fast moves two steps. When fast reaches the end, slow will be at the middle node
@@ -167,7 +167,7 @@ class SinglyLinkedList {
         Node* left = head;
         Node* right = tail; // do null ptr if u do not have a tail pointer
         
-        while (left <= right) {
+        while (left != right->next) { // left == right->next means the search space is empty
             if (mid->data == val) {
                 cout << "Element found" << endl;
                 return;
@@ -182,6 +182,40 @@ class SinglyLinkedList {
         }
         cout << "Element not found" << endl;;
     }
+
+    void binarySearchLinkedListRecursive(Node* left, Node* right, int val) {
+        if (left == nullptr || right == nullptr || left == right->next) {
+            cout << "Element not found" << endl;
+            return;
+        }
+
+        // Find middle between left and right
+        Node* mid = findMiddleNode(left, right);
+
+        if (mid == nullptr) {
+            cout << "Element not found" << endl;
+            return;
+        }
+
+        if (mid->data == val) {
+            cout << "Element found" << endl;
+            return;
+        }
+        else if (mid->data > val) {
+            // Search left half
+            binarySearchLinkedListRecursive(left, mid, val);
+        }
+        else {
+            // Search right half
+            binarySearchLinkedListRecursive(mid->next, right, val);
+        }
+    }
+
+    // Wrapper function
+    void binarySearchLinkedList(int val) {
+        binarySearchLinkedListRecursive(head, tail, val);
+    }
+
     
     void print() {
         if (head == nullptr) {
@@ -235,12 +269,12 @@ int main() {
     cout << "Initial list: ";
     list.print();
     
-    // list.binarySearch(1);
-    // list.binarySearch(2);
-    list.binarySearch(3); 
-    // list.binarySearch(4);
-    // list.binarySearch(5);
-    // list.binarySearch(6); // Element not found
+    // list.binarySearchLinkedList(1);
+    // list.binarySearchLinkedList(2);
+    list.binarySearchLinkedList(3); 
+    // list.binarySearchLinkedList(4);
+    // list.binarySearchLinkedList(5);
+    // list.binarySearchLinkedList(6); // Element not found
 }
 
 // int main() {
