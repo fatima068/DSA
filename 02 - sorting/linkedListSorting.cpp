@@ -13,7 +13,8 @@ class Node {
 };
 
 Node* bubbleSortLinkedList(Node* head) { // swapping nodes
-    if (head == nullptr || head->next == nullptr) return head;      // Edge cases: empty list or single node → already sorted
+    // Edge cases: empty list or single node → already sorted
+    if (head == nullptr || head->next == nullptr) return head;      
     bool swapped = true; // Flag to check if a swap happened in the current pass
 
     while(swapped == true) { // Keep looping until no swaps happen in a full pass
@@ -53,7 +54,6 @@ Node* bubbleSortLinkedList(Node* head) { // swapping nodes
     return head;     // Return the head of sorted linked list 
 }
 
-// Function to get length of linked list
 int getLength(Node* head) {
     int len = 0;
     while (head != nullptr) {
@@ -62,15 +62,12 @@ int getLength(Node* head) {
     }
     return len;
 }
-
-// Function to get pointer to node at a given index
 Node* getNodeAt(Node* head, int index) {
     for (int i = 0; i < index && head; i++) {
         head = head->next;
     }
     return head;
 }
-
 Node* combSortLinkedList(Node* head) { // swapping values 
     if (head !=nullptr || head->next != nullptr) return head; // Edge case: empty or single-node list
 
@@ -102,13 +99,13 @@ Node* combSortLinkedList(Node* head) { // swapping values
             }
         }
     }
-
     return head;
 }
 
-Node* insertionSortLinkedList(Node* head) { // swapping nodes
-    if (head == nullptr || head->next == nullptr) return head;    // if the list is empty or has only one node, it is already sorted
 
+Node* insertionSortLinkedList(Node* head) { // swapping nodes
+    if (head == nullptr || head->next == nullptr) return head;    // if the list is empty or has only one node, 
+    //it is already sorted
     Node* sortedListHead = nullptr; // Pointer to the new sorted list (initially empty)
     Node* current = head;   // Start from the first node of the original list
 

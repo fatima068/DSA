@@ -13,12 +13,10 @@ int binarySearch(int arr[], int size, int target) {
         if (arr[mid] == target) {
             return mid;  // Target found, return index
         }
-
         // If target is greater, ignore left half
         else if (arr[mid] < target) {
             left = mid + 1;
-        }
-        
+        } 
         // If target is smaller, ignore right half
         else {
             right = mid - 1;
