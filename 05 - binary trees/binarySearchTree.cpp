@@ -1,6 +1,7 @@
 // assume all nodes are unique
 // if bst is created in correct order, then in order traversal will print the values in ascending order 
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class Node {
@@ -108,6 +109,84 @@ class BinarySearchTree {
         cout << root->data << "  ";
         inOrder(root->right);   
     }
+
+    void levelOrder(Node* root) {
+        queue<Node*> q;
+        
+        q.push(root);
+        
+        while(q.size() > 0) {
+            Node* curr = q.front();
+            q.pop();
+            
+            cout << curr->data << " ";
+            if(curr->left != NULL) {
+                q.push(curr->left);
+            }
+            if(curr->right != NULL) {
+                q.push(curr->right);
+            }
+        }
+        cout << endl;
+    }
+
+    void levelOrderWithNewLine(Node* root) {
+        queue<Node*> q;
+        
+        q.push(root);
+        q.push(NULL);
+            
+        while(q.size() > 0) {
+            Node* curr = q.front();
+            q.pop();
+
+            if(curr == NULL) {
+                if(q.empty() == false) {
+                    cout << endl;
+                    q.push(NULL);
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            cout << curr->data << " ";
+            if(curr->left != NULL) {
+                q.push(curr->left);
+            }
+            if(curr->right != NULL) {
+                q.push(curr->right);
+            }
+        }
+        cout << endl;
+    }
+
+    bool isCompleteBinaryTree(Node* root) { // we do level order traversal without new line and if null comes in the queue, then everything after that in the queue must be null else the tree wont be a complete binary tree
+        if (root == NULL) return true;
+        queue<Node*> q; 
+        q.push(root);
+        // This flag becomes true when we find the first NULL (missing child)
+        bool nullFound = false;
+
+        while (!q.empty()) {
+            Node* curr = q.front();  
+            q.pop();     
+
+            if (curr == NULL) {
+                // found a missing child (NULL) so from now on, all further nodes must also be NULL
+                nullFound = true;
+            } 
+            else {
+                //Found a real (non-null) node
+                // If we already saw a NULL before this, it means there's a gap in the tree → not complete
+                if (nullFound) 
+                    return false;
+                // Push its left and right children to the queue (they may be NULL — that’s important to check completeness)
+                q.push(curr->left);
+                q.push(curr->right);
+            }
+        }
+        return true;
+    }
 }; 
 
 int main() {
@@ -119,4 +198,4 @@ int main() {
     bst.search(bst.root, 88);
     bst.root = bst.deleteNode(bst.root, 4);
     bst.inOrder(bst.root);
-}
+} 

@@ -16,7 +16,7 @@ class CircularQueue {
     public:
     CircularQueue(int capacity) : capacity(capacity), front(0), rear(-1), currentSize(0) {
         arr = new int(capacity);
-    } 
+    }
 
     void push(int val) {
         if (isFull()) {
