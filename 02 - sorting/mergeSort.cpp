@@ -27,9 +27,6 @@ void merge(int arr[], int l, int m, int r) {
         tempIndex++;
         rightIndex++;
     }
-    // for (int i = 0; i < n; i++) { // size of array is not always n and doesnt always start from 0, so this will be wrong
-    //     arr[i] = temp[i];
-    // }
     for (int i = l; i <= r; i++) { // shpuldnt be < r as r is included
         arr[i] = temp[i];
     }

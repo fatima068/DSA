@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// there are 3 types of quick sort: pivot at start, pivot at end, pivot at random position: we are doing the one with pivot at the end 
-
 int partition(int arr[], int start, int end) { 
     int pivot = arr[end];
     int pivotIndex = start;

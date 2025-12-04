@@ -17,19 +17,19 @@ class avlTree {
 
     avlTree() : root(nullptr) {}
 
-    Node* LLrotation (Node* root) {
+    Node* RRrotation (Node* root) {
         Node* newRoot = root->left;
         Node* newRootRight = newRoot->right;
-        // rotate now 
+        // rotate now
         newRoot->left = root;
         root->left = newRootRight;
         return newRoot;
     }
 
-    Node* RRrotation (Node* root) { // new root aur new root ke left ko alag pointer mei store karna hai
+    Node* LLrotation (Node* root) { // new root aur new root ke left ko alag pointer mei store karna hai
         Node* newRoot = root->right;
         Node* newRootLeft = newRoot->left;
-        // now do rotation: new root assign ho chuki hai, need to update new root ka left to old root, and old root ka right to newrootleft
+        // now do LLrotation: new root assign ho chuki hai, need to update new root ka left to old root, and old root ka right to newrootleft
         newRoot->left = root;
         root->right = newRootLeft;
         return newRoot;
@@ -78,18 +78,18 @@ class avlTree {
         int bf = getBalanceFactor(root);
 
         if (bf > 1 && val < root->left->data) { // LL imbalance case
-            return LLrotation(root);
+            return RRrotation(root);
         } 
         else if (bf > 1 && val > root->left->data) { // LR imbalance case 
-            root->left = RRrotation(root->left);
-            return LLrotation(root);
+            root->left = LLrotation(root->left);
+            return RRrotation(root);
         } 
         else if (bf < -1 && val > root->right->data) { // RR imbalance case 
-            return RRrotation(root);
+            return LLrotation(root);
         } 
         else if (bf < -1 && val < root->right->data) { //RL imbalance case
-            root->right = LLrotation(root->right);
-            return RRrotation(root);
+            root->right = RRrotation(root->right);
+            return LLrotation(root);
         }
         return root; // return the final root of the avl tree after it has been balanced
     }
@@ -125,18 +125,18 @@ class avlTree {
         // node delete hogya, now we check if tree is balanced 
         int bf = getBalanceFactor(root);
         if (bf == 2 && getBalanceFactor(root->left) >= 0) { //LL
-            return LLrotation(root);
+            return RRrotation(root);
         }
         else if (bf == 2 && getBalanceFactor(root->left) < 0) { //LR
-            root->left = RRrotation(root->left);
-            return LLrotation(root);
+            root->left = LLrotation(root->left);
+            return RRrotation(root);
         }
         else if (bf == -2 && getBalanceFactor(root->right) <= 0) { //RR
-            return RRrotation(root);
+            return LLrotation(root);
         }
         else if (bf == -2 && getBalanceFactor(root->right) > 0) { //RL
-            root->right = LLrotation(root->right);
-            return RRrotation(root);
+            root->right = RRrotation(root->right);
+            return LLrotation(root);
         }
         return root;
     }
